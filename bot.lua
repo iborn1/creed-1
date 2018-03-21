@@ -15,7 +15,7 @@ URL = require('socket.url')
 clr = require 'term.colors'
 db = redis2.connect('127.0.0.1', 6379)
 sudo_users = {
-  294665580
+  414720528
 }
 
 
@@ -431,9 +431,9 @@ function vardump(value, depth, key)
     --vardump(extra)
     --vardump(data)
     if redis:hget(extra.gid, "lang:megacreed") == "en" then
-      text = 'SuperGroup ID : '..string.sub(extra.gid, 5,14)..'\nUser ID : '..extra.uid..'\nChannel : @MegaCreedUpdates'
+      text = 'SuperGroup ID : '..string.sub(extra.gid, 5,14)..'\nUser ID : '..extra.uid..'\n'
     else
-      text = 'آيدي گروه : '..string.sub(extra.gid, 5,14)..'\nآيدي کاربر : '..extra.uid..'\nکانال ما : @MegaCreedUpdates'
+      text = 'آيدي گروه : '..string.sub(extra.gid, 5,14)..'\nآيدي کاربر : '..extra.uid..'\n'
     end
     tdcli.sendPhoto(extra.gid, 0, extra.id, 1, nil, data.photos_[0].sizes_[1].photo_.persistent_id_, text)
   end
@@ -638,7 +638,7 @@ if msg.content_.text_ then
           if msg.content_.text_:match("^/leave(-%d+)") and is_admin(msg) then
             local txt = {string.match(msg.content_.text_, "^/(leave)(-%d+)$")}
             tdcli.sendText(msg.chat_id_, msg.id_, 0, 1, nil, 'ربات با موفقيت از گروه '..txt[2]..' خارج شد.', 1, 'md')
-            tdcli.sendText(txt[2], 0, 0, 1, nil, 'ربات به دلايلي گروه را ترک ميکند\nبراي اطلاعات بيشتر ميتوانيد با @Mr_creed در ارتباط باشيد.\nدر صورت ريپورت بودن ميتوانيد با ربات زير به ما پيام دهيد\n@YousefTear_Bot\n\nChannel> @MegaCreedUpdates', 1, 'html')
+            tdcli.sendText(txt[2], 0, 0, 1, nil, 'ربات به دلايلي گروه را ترک ميکند\nبراي اطلاعات بيشتر ميتوانيد با @IBORN در ارتباط باشيد.\nدر صورت ريپورت بودن ميتوانيد با ربات زير به ما پيام دهيد\n@IBORNBot', 1, 'html')
             tdcli.changeChatMemberStatus(txt[2], tonumber(239726711), 'Left')
           end
           if msg.content_.text_:match("^[Aa]dd$") and is_admin(msg) then
@@ -712,7 +712,7 @@ if msg.content_.text_ then
             if redis:get("bot:enable:megacreed"..msg.chat_id_) then
               redis:del("bot:enable:megacreed"..msg.chat_id_)
                 tdcli.sendText(-1001105433602, 0, 0, 1, nil, "شارژ اين گروه به اتمام رسيد \nLink : "..(redis:get("bot:group:link"..msg.chat_id_) or "تنظيم نشده").."\nID : "..msg.chat_id_..'\n\nدر صورتي که ميخواهيد ربات اين گروه را ترک کند از دستور زير استفاده کنيد\n\n/leave'..msg.chat_id_..'\nبراي جوين دادن توي اين گروه ميتوني از دستور زير استفاده کني:\n/join'..msg.chat_id_..'\n_________________\nدر صورتي که ميخواهيد گروه رو دوباره شارژ کنيد ميتوانيد از کد هاي زير استفاده کنيد...\n\n<code>براي شارژ 1 ماهه:</code>\n/plan1'..msg.chat_id_..'\n\n<code>براي شارژ 3 ماهه:</code>\n/plan2'..msg.chat_id_..'\n\n<code>براي شارژ نامحدود:</code>\n/plan3'..msg.chat_id_, 1, 'html')
-              tdcli.sendText(msg.chat_id_, 0,0, 1,nil, 'شارژ اين گروه به اتمام رسيده است !\nربات تا زمانيکه گروه شارژ نشود کار نخواهد کرد\nبراي شارژ کردن گروه خود به @Mr_creed مراجعه نماييد !\nکانال ما > @MegaCreedUpdates', 1, 'html')
+              tdcli.sendText(msg.chat_id_, 0,0, 1,nil, 'شارژ اين گروه به اتمام رسيده است !\nربات تا زمانيکه گروه شارژ نشود کار نخواهد کرد\nبراي شارژ کردن گروه خود به @IBORN مراجعه نماييد !', 1, 'html')
             end
           end
 
@@ -729,7 +729,7 @@ if msg.content_.text_ then
 
 
           if msg.content_.text_:match("^([Cc]reator)$") then
-            tdcli.sendText(msg.chat_id_, msg.id_, 0, 1, nil, "<b>Creator : </b>@Mr_Creed\n<b>Channel : </b>@IR_TeaM\n\nسازنده :‌ @Mr_Creed\nکانال : @IR_TeaM", 1, "html")
+            tdcli.sendText(msg.chat_id_, msg.id_, 0, 1, nil, "<b>Creator : </b>@IBORN\n<b>\n\nسازنده :‌ @IBORN", 1, "html")
           end
 
           if msg.content_.text_:match("^([Ii][Dd])$") then
@@ -740,9 +740,9 @@ if msg.content_.text_ then
             if not matches[2] and reply == 0 then
               local function dl_photo(arg,data)
                 if redis:hget(msg.chat_id_, "lang:megacreed") == "en" then
-                  text = 'Bot ID : '..msg.chat_id_..'\nYour ID : '..msg.sender_user_id_..'\nChannel : @MegaCreedUpdates'
+                  text = 'Bot ID : '..msg.chat_id_..'\nYour ID : '..msg.sender_user_id_..'\n'
                 else
-                  text = 'آيدي ربات : '..msg.chat_id_..'\nآيدي کاربر : '..msg.sender_user_id_..'\nکانال ما : @MegaCreedUpdates'
+                  text = 'آيدي ربات : '..msg.chat_id_..'\nآيدي کاربر : '..msg.sender_user_id_..'\n'
                 end
                 tdcli.sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, data.photos_[0].sizes_[1].photo_.persistent_id_, text)
               end
@@ -760,9 +760,8 @@ if msg.content_.text_ then
 به پیوی من خوش آمدید دوست عزیز !
 
 این یک ربات هوشمند لینک پاک کن و فحش پاک کن و ... میباشد که ماهانه به گروه ها با هزینه ی مناسب اجاره داده میشود تا در مدیریت گروه ها به شما کمک نماید !
-برای خرید به ایدی : @Mr_creed پیام بدهید !
+برای خرید به ایدی : @IBORN پیام بدهید !
 
-جهت دیدن آپدیت ها و مشخصات دیگر در کانال @MegaCreedUpdates عضو شوید تا آگاه بمانید !
             ]]
             tdcli.sendText(msg.chat_id_, msg.id_, 0, 1, nil, txthelppv , 1, "md")
             redis:sadd("bot:userss:megacreed" , msg.chat_id_)
@@ -812,7 +811,7 @@ print("Gbaned user")
         local gid = tonumber(msg.chat_id_)
         local uid = matchees[2]
         local function getid_photo(extra, result, success)
-          tdcli.sendPhoto(result.chat_id_, result.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_, 'Here ID : '..result.chat_id_..'\nHis ID : '..result.sender_user_id_..'\nChannel : @MegaCreedUpdates')
+          tdcli.sendPhoto(result.chat_id_, result.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_, 'Here ID : '..result.chat_id_..'\nHis ID : '..result.sender_user_id_..'\n')
         end
         resolve_username(matchees[2], getid_photo)
       end
@@ -1067,9 +1066,9 @@ end
               end
             end
             if redis:hget(msg.chat_id_, "lang:megacreed") == "en" then
-              text = "<b>Your Messages :</b> <code>"..usermsgs.."</code>\n<b>Groups Messages :</b> <code>"..allgpmsgs.."</code>\n<b>Your Message Percent :</b> <code>%"..string.sub(percent, 1, 4).."</code>\n<b>Your Info : </b>"..get_info(msg.sender_user_id_).."\n\nChannel : @MegaCreedUpdates"
+              text = "<b>Your Messages :</b> <code>"..usermsgs.."</code>\n<b>Groups Messages :</b> <code>"..allgpmsgs.."</code>\n<b>Your Message Percent :</b> <code>%"..string.sub(percent, 1, 4).."</code>\n<b>Your Info : </b>"..get_info(msg.sender_user_id_).."\n"
             else
-              text = "<b>تعداد پيام هاي شما :</b> <code>"..usermsgs.."</code>\n<b>تعداد پيام هاي گروه :</b> <code>"..allgpmsgs.."</code>\n<b>درصد پيام هاي شما :</b> <code>%"..string.sub(percent, 1, 4).."</code>\n<b>اطلاعات شما : </b>\n"..get_info(msg.sender_user_id_).."\n\nکانال ما : @MegaCreedUpdates"
+              text = "<b>تعداد پيام هاي شما :</b> <code>"..usermsgs.."</code>\n<b>تعداد پيام هاي گروه :</b> <code>"..allgpmsgs.."</code>\n<b>درصد پيام هاي شما :</b> <code>%"..string.sub(percent, 1, 4).."</code>\n<b>اطلاعات شما : </b>\n"..get_info(msg.sender_user_id_).."\n"
             end
             tdcli.sendText(msg.chat_id_, msg.id_, 0, 1, nil, text, 1, "html")
           end
@@ -1204,9 +1203,9 @@ end
             if not matches[2] and reply == 0 then
               local function dl_photo(arg,data)
                 if redis:hget(msg.chat_id_, "lang:megacreed") == "en" then
-                  text = 'SuperGroup ID : '..string.sub(chat_id, 5,14)..'\nUser ID : '..msg.sender_user_id_..'\nChannel : @MegaCreedUpdates'
+                  text = 'SuperGroup ID : '..string.sub(chat_id, 5,14)..'\nUser ID : '..msg.sender_user_id_..'\n'
                 else
-                  text = 'آيدي گروه : '..string.sub(chat_id, 5,14)..'\nآيدي شخص : '..msg.sender_user_id_..'\nکانال ما : @MegaCreedUpdates'
+                  text = 'آيدي گروه : '..string.sub(chat_id, 5,14)..'\nآيدي شخص : '..msg.sender_user_id_..'\n'
                 end
                 tdcli.sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, data.photos_[0].sizes_[1].photo_.persistent_id_, text)
               end
@@ -1232,9 +1231,9 @@ end
             local rules = redis:get('bot:rules'..msg.chat_id_)
             if not rules then
               if redis:hget(msg.chat_id_, "lang:megacreed") == "en" then
-                rules = '<b>No Rules has been Set for this Group !</b>\n\nChannel : @MegaCreedUpdates'
+                rules = '<b>No Rules has been Set for this Group !</b>\n'
               else
-                rules = '<b>قوانيني براي اين گروه تنظيم نشده است !</b>\nکانال ما :‌ @MegaCreedUpdates'
+                rules = '<b>قوانيني براي اين گروه تنظيم نشده است !</b>'
               end
             end
             tdcli.sendText(chat_id, msg.id_, 0, 1, nil, rules, 1, 'html')
@@ -1354,8 +1353,7 @@ setlang fa
 ??clean [modlist/bots/banlist/mutelist]
 براي پاک کردن ليست مديرت ها و ربات هاي گروه و اعضاي بن شده و اعضاي ساکت شده به کار ميره مثلا :
 clean mutelist
-کانال ما : @MegaCreedUpdates
-حتما جوين دهيد تا از دستورات و آپديت هاي جديد با خبر باشيد !‌
+
 
 
 ]]
@@ -1388,7 +1386,7 @@ setrules Please Be Polite !
 - - - - - - - - - - - - - -
 ??promote [Username , ID , Reply]
 <b>To Promote Some on as Moderator !</b> E.g :
-promote 22122 or @MegaCreedBot
+promote 22122 or @IBORN
 ??modlist
 <b>To Get Moderators List !</b>
 - - - - - - - - - - - - - -
@@ -1449,9 +1447,6 @@ setfloodnum 10
 - - - - - - - - - - - - - -
 ??clean [modlist/bots/banlist/mutelist]
 <b>To Clean Moderators , Banned s , Muted Users , Bots list !</b>
-
-Our Channel : @MegaCreedUpdates
-<code>Join to Learn News and Newest Commands !</code>
 
 
 ]]
@@ -4219,7 +4214,6 @@ end
 
 
 
---------      Mega Creed Bot ! ------------
 
 
 
